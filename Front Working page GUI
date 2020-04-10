@@ -1,0 +1,55 @@
+import tkinter as tk
+
+window = tk.Tk()
+
+
+text2 = tk.Text(window, height=25, width=150,)
+scroll = tk.Scrollbar(window, command=text2.yview)
+text2.configure(yscrollcommand=scroll.set)
+text2.tag_configure('bold_italics', font=('Arial', 20, 'bold', 'italic'))
+text2.tag_configure('big', font=('Verdana', 20, 'bold'))
+text2.tag_configure('color',
+                    foreground='#476042',
+                    font=('Tempus Sans ITC', 12, 'bold'))
+
+
+text2.insert(tk.END,'\nDocument Search Manager\n', 'big')
+quote = """
+How easy do you find it to remember the exact location of a document that you created last year?
+Not very easy, right?
+Big Organizations/people deal with hundreds of documents daily and forget about them, most of the time. 
+But what if we want that old documentation again for some work,
+but unfortunately you do not remember the name or the actual content of that document to retrieve it from the large storage of your computer. 
+In such cases, use of a Intelligent document finder can really make a huge difference.
+"""
+text2.insert(tk.END, quote, 'color')
+labelfont = ('times', 40, 'bold')
+text2.config(bg='black', fg='yellow')  
+text2.config(font=labelfont)           
+text2.config(height=10, width=40)
+text2.pack(expand=True, fill=tk.BOTH)
+
+text2.pack(fill=tk.BOTH)
+scroll.pack(fill=tk.Y)
+
+contentfont = ('times', 20, 'bold')
+contentframe = tk.Label(window, text="Do you want to upload a file or search for a file?")
+contentframe.config(font=contentfont)
+contentframe.config(bg='black', fg='aqua')
+contentframe.pack(expand=True, fill=tk.BOTH)
+contentframe.pack()
+
+uploadbutton=tk.Button(window, text="Upload file" ,relief= tk.GROOVE, borderwidth=5)
+uploadfont = ('times', 25, 'bold')
+uploadbutton.config(font=uploadfont)
+uploadbutton.config(bg='black', fg='aqua')
+uploadbutton.pack(side= tk.LEFT, expand=True, fill=tk.BOTH, padx=15, pady=15)
+
+searchbutton=tk.Button(window, text="Search file",relief= tk.GROOVE, borderwidth=5)
+searchfont = ('times', 25, 'bold')
+searchbutton.config(font=searchfont)
+searchbutton.config(bg='black', fg='aqua')
+searchbutton.pack(side= tk.RIGHT, expand=True, fill=tk.BOTH, padx=15, pady=15)
+
+
+window.mainloop()
