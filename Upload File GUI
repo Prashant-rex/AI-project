@@ -1,0 +1,83 @@
+from tkinter import filedialog
+import tkinter as tk
+import tkinter.messagebox
+import os
+
+window = tk.Tk()
+window.title("Upload File")
+
+titleframe = tk.Label(window, text="Click on the Upload file button and browse the file that you want to upload.",relief=tk.RAISED)
+labelfont = ('times', 20, 'bold')
+titleframe.config(bg='black', fg='yellow')  
+titleframe.config(font=labelfont)           
+titleframe.config(height=10, width=80)       
+titleframe.pack(expand=True, fill=tk.BOTH)
+titleframe.pack()
+
+fp=tk.Frame()
+fp.pack()
+
+filepath = tk.Entry(fp)
+filepath.config(width=160)
+path = filepath.get()
+filepath.pack(side=tk.LEFT)
+
+def display_and_print():
+    tk.messagebox.showinfo("Successful","File Successfully uploaded!")
+
+upbutton=tk.Button(fp, text="Upload path" ,command=display_and_print,relief= tk.GROOVE, borderwidth=5,width=10)
+uploadfont = ('times', 10, 'bold')
+upbutton.config(font=uploadfont)
+upbutton.config(bg='black', fg='aqua')
+upbutton.pack(side=tk.LEFT,expand=True, fill=tk.BOTH, padx=5, pady=5)
+
+def print_path():
+    f = tk.filedialog.askopenfilename(
+        parent=window, initialdir='C:/Tutorial',
+        title='Choose file',
+        filetypes=[('txt files', '.txt'),
+                   ('all files', '*')]
+        )
+    
+    x=os.path.basename(f)
+
+    print(f)
+    print (x)
+
+
+buttons=tk.Frame()
+buttons.pack(side=tk.LEFT)
+
+
+uploadbutton = tk.Button(buttons, text='Upload file', command=print_path,width=20)
+buttonfont = ('times', 25, 'bold')
+uploadbutton.config(font=buttonfont)
+uploadbutton.config(bg='black', fg='aqua')
+uploadbutton.pack(expand=True, fill=tk.BOTH, padx=15, pady=15)
+
+def delete_path():
+    fileupload.delete(0,tk.END)
+    
+removefile=tk.Button(buttons, text="Remove file",command=delete_path,relief= tk.GROOVE, borderwidth=5,width=20)
+removefont = ('times', 25, 'bold')
+removefile.config(font=removefont)
+removefile.config(bg='black', fg='aqua')
+removefile.pack(side=tk.LEFT,expand=True, fill=tk.BOTH, padx=15, pady=15)
+
+upent=tk.Frame()
+upent.pack()
+
+fileupload=tk.Entry(upent,width=80)
+fileupload.insert(0,print_path)
+fileupload.pack(side=tk.LEFT)
+
+def display_and_print():
+    tk.messagebox.showinfo("Successful","File Successfully uploaded!")
+
+upbutton=tk.Button(upent, text="Upload" ,command=display_and_print,relief= tk.GROOVE, borderwidth=5)
+uploadfont = ('times', 25, 'bold')
+upbutton.config(font=uploadfont)
+upbutton.config(bg='black', fg='aqua')
+upbutton.pack(expand=True, fill=tk.BOTH, padx=15, pady=15)
+
+window.mainloop()
